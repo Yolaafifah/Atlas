@@ -63,11 +63,11 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'admin'=> \App\Http\Middleware\Admin::class,
-        'user'=> \App\Http\Middleware\User::class,
-        'cekrole'=> \App\Http\Middleware\Cekrole::class,
-        'supir'=> \App\Http\Middleware\Supir::class,
-        'gudang'=> \App\Http\Middleware\Gudang::class,
+        'admin' => \App\Http\Middleware\Admin::class,
+        'user' => \App\Http\Middleware\User::class,
+        'cekrole' => \App\Http\Middleware\Cekrole::class,
+        'supir' => \App\Http\Middleware\Supir::class,
+        'gudang' => \App\Http\Middleware\Gudang::class,
 
     ];
 }
