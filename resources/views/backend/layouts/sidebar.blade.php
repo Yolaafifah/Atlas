@@ -139,7 +139,7 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    @if(Auth::user()->role == 'admin')
+    @can('admin')
     <div class="sidebar-heading">
       Posts
     </div>
@@ -217,7 +217,7 @@
             <i class="fas fa-cog"></i>
             <span>Settings</span></a>
     </li>
-    @endif
+    @endcan
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

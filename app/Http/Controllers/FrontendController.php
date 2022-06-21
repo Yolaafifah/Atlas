@@ -361,7 +361,7 @@ class FrontendController extends Controller
                 return redirect('/')->with('success','You are login success ');
 
             }else if (Auth::user()->role == 'supir'){
-                return redirect('/order')->with('success','You are login success ');
+                return redirect()->route('order.index')->with('success','You are login success ');
                 
             }else if (Auth::user()->role == 'gudang'){
                 return redirect('/order')->with('success','You are login success ');

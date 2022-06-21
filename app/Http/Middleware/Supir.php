@@ -15,6 +15,7 @@ class Supir
      */
     public function handle($request, Closure $next)
     {
+        
         if($request->user()->role=='supir'){
             return $next($request);
         }
