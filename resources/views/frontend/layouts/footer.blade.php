@@ -15,20 +15,20 @@
 								$settings=DB::table('settings')->get();
 							@endphp
 							<p class="text">@foreach($settings as $data) {{$data->short_des}} @endforeach</p>
-							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
+							<p class="call">Punya Pertanyaan? Hubungi kami 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
 						</div>
 						<!-- End Single Widget -->
 					</div>
 					<div class="col-lg-2 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer links">
-							<h4>Information</h4>
+							<h4>Informasi</h4>
 							<ul>
-								<li><a href="{{route('about-us')}}">About Us</a></li>
-								<li><a href="{{route('product-lists')}}">Product</a></li>
-								<li><a href="{{route('product-grids')}}">Category</a></li>
-								<li><a href="{{route('contact')}}">Contact Us</a></li>
-								<li><a href="{{route('blog')}}">Blog</a></li>
+								<li><a href="{{route('about-us')}}">Tentang Kami</a></li>
+								<li><a href="{{route('product-lists')}}">Produk</a></li>
+								<li><a href="{{route('product-grids')}}">Kategori</a></li>
+								<li><a href="{{route('contact')}}">Kontak Kami</a></li>
+								<li><a href="{{route('blog')}}">Artikel</a></li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->
@@ -41,7 +41,7 @@
 					<div class="col-lg-3 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer social">
-							<h4>Address</h4>
+							<h4>Alamat</h4>
 							<!-- Single Widget -->
 							<div class="contact">
 								<ul>
@@ -72,7 +72,7 @@
 					<div class="row">
 						<div class="col-lg-6 col-12">
 							<div class="left">
-								<p>Copyright © {{date('Y')}} <a href="#" target="_blank">Vilda & Yola</a>  -  All Rights Reserved.</p>
+								<p>Developed By{{date('Y')}} <a target="_blank">Vilda & Yola</a>  </p>
 							</div>
 						</div>
 						

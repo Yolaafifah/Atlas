@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Review Lists</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Ulasan</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -17,34 +17,25 @@
         <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Review By</th>
-              <th>Product Title</th>
-              <th>Review</th>
-              <th>Rate</th>
-              <th>Date</th>
+              <th>No.</th>
+              <th>Ulasan Dari</th>
+              <th>Judul Produk</th>
+              <th>Ulasan</th>
+              <th>Penilaian</th>
+              <th>Tanggal</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Review By</th>
-              <th>Product Title</th>
-              <th>Review</th>
-              <th>Rate</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Action</th>
-              </tr>
-          </tfoot>
+          
           <tbody>
+          @php
+            $no = 1;
+            @endphp
             @foreach($reviews as $review)
                 <tr>
-                    <td>{{$review->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$review->user_info['name']}}</td>
-                    <td>{{$review->product='title'}}</td>
+                    <td>{{$review->product->title}}</td>
                     <td>{{$review->review}}</td>
                     <td>
                      <ul style="list-style:none" class="d-flex">
@@ -57,7 +48,7 @@
                         @endfor
                      </ul>
                     </td>
-                    <td>{{$review->created_at->format('M d D, Y g: i a')}}</td>
+                    <td>{{$review->created_at}}</td>
                     <td>
                         @if($review->status=='active')
                           <span class="badge badge-success">{{$review->status}}</span>
@@ -79,7 +70,7 @@
         </table>
         <span style="float:right">{{$reviews->links()}}</span>
         @else
-          <h6 class="text-center">No reviews found!!!</h6>
+          <h6 class="text-center">Tidak ada ulasan yang ditemukan!!!</h6>
         @endif
       </div>
     </div>

@@ -47,6 +47,7 @@ class UsersController extends Controller
         ]);
         // dd($request->all());
         $data=$request->all();
+        $data['photo'] = "/storage/photos/1/users/".$request->photo;
         $data['password']=Hash::make($request->password);
         // dd($data);
         $status=User::create($data);
@@ -104,6 +105,7 @@ class UsersController extends Controller
         ]);
         // dd($request->all());
         $data=$request->all();
+        $data['photo'] = "/storage/photos/1/users/".$request->photo;
         // dd($data);
         
         $status=$user->fill($data)->save();

@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Brand List</h6>
-      <a href="{{route('brand.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Brand</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Merk</h6>
+      <a href="{{route('brand.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Tambah Merk</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -18,26 +18,21 @@
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
+              <th>No.</th>
+              <th>Judul</th>
               <th>Slug</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Status</th>
-              <th>Action</th>
-              </tr>
-          </tfoot>
+          
           <tbody>
+            @php
+            $no = 1;
+            @endphp
             @foreach($brands as $brand)   
                 <tr>
-                    <td>{{$brand->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$brand->title}}</td>
                     <td>{{$brand->slug}}</td>
                     <td>
@@ -60,7 +55,7 @@
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="#delModal{{$user->id}}Label">Delete user</h5>
+                              <h5 class="modal-title" id="#delModal{{$user->id}}Label">Hapus User</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -69,7 +64,7 @@
                               <form method="post" action="{{ route('banners.destroy',$user->id) }}">
                                 @csrf 
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger" style="margin:auto; text-align:center">Parmanent delete user</button>
+                                <button type="submit" class="btn btn-danger" style="margin:auto; text-align:center">Hapus Permanent User</button>
                               </form>
                             </div>
                           </div>
@@ -81,7 +76,7 @@
         </table>
         <span style="float:right">{{$brands->links()}}</span>
         @else
-          <h6 class="text-center">No brands found!!! Please create brand</h6>
+          <h6 class="text-center">Merk tidak ditemukan!!! Harap membuat kembali</h6>
         @endif
       </div>
     </div>

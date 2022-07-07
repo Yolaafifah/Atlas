@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Pesanan</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Rekap Pengiriman</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -19,10 +19,11 @@
             <tr>
               <th>No.</th>
               <th>No. Pesanan</th>
+              <th>Tanggal Pesanan</th>
               <th>Nama</th>
-              <th>Email</th>
+              <th>Alamat</th>
               <th>Jumlah</th>
-              <th>Biaya Ongkos Kirim</th>
+              <th>Biaya</th>
               <th>Jumlah Total</th>
               <th>Status</th>
               <th>Supir</th>
@@ -41,8 +42,9 @@
                 <tr>
                     <td>{{$no++}}</td>
                     <td>{{$order->order_number}}</td>
+                    <td>{{$order->created_at}}</td>
                     <td>{{$order->first_name}} {{$order->last_name}}</td>
-                    <td>{{$order->email}}</td>
+                    <td>{{$order->address1}}</td>
                     <td>{{$order->quantity}}</td>
                     <td>@foreach($shipping_charge as $data) Rp. {{number_format($data,0)}} @endforeach</td>
                     <td>Rp. {{number_format($order->total_amount,0)}}</td>

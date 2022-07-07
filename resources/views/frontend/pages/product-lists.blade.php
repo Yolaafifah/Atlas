@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','PT. Jatim Es Tube - Gresik || PRODUCT PAGE')
+@section('title','PT. Jatim Es Tube - Gresik || HALAMAN PRODUCT')
 
 @section('main-content')
 	
@@ -12,7 +12,7 @@
 						<div class="bread-inner">
 							<ul class="bread-list">
 								<li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-								<li class="active"><a href="javascript:void(0);">Shop List</a></li>
+								<li class="active"><a href="javascript:void(0);">Daftar Produk</a></li>
 							</ul>
 						</div>
 					</div>
@@ -30,7 +30,7 @@
 							<div class="shop-sidebar">
                                 <!-- Single Widget -->
                                 <div class="single-widget category">
-                                    <h3 class="title">Categories</h3>
+                                    <h3 class="title">Kategori</h3>
                                     <ul class="categor-list">
 										@php
 											// $category = new Category();
@@ -64,7 +64,7 @@
                                 
                                 <!-- Single Widget -->
                                 <div class="single-widget recent-post">
-                                    <h3 class="title">Recent post</h3>
+                                    <h3 class="title">Postingan Terbaru</h3>
                                     {{-- {{dd($recent_products)}} --}}
                                     @foreach($recent_products as $product)
                                         <!-- Single Post -->
@@ -80,7 +80,7 @@
                                                 @php
                                                     $org=($product->price-($product->price*$product->discount)/100);
                                                 @endphp
-                                                <p class="price"><del class="text-muted">${{number_format($product->price,2)}}</del>   ${{number_format($org,2)}}  </p>                                                
+                                                <p class="price"><del class="text-muted">Rp. {{number_format($product->price,0)}}</del>   Rp. {{number_format($org,0)}}  </p>                                                
                                             </div>
                                         </div>
                                         <!-- End Single Post -->
@@ -89,7 +89,7 @@
                                 <!--/ End Single Widget -->
                                 <!-- Single Widget -->
                                 <div class="single-widget category">
-                                    <h3 class="title">Brands</h3>
+                                    <h3 class="title">Merk</h3>
                                     <ul class="categor-list">
                                         @php
                                             $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
@@ -109,7 +109,7 @@
 									<div class="shop-top">
 										<div class="shop-shorter">
 											<div class="single-shorter">
-												<label>Show :</label>
+												<label>Cari :</label>
 												<select class="show" name="show" onchange="this.form.submit();">
 													<option value="">Default</option>
 													<option value="9" @if(!empty($_GET['show']) && $_GET['show']=='9') selected @endif>09</option>
@@ -119,7 +119,7 @@
 												</select>
 											</div>
 											<div class="single-shorter">
-												<label>Sort By :</label>
+												<label>Urutkan Dari :</label>
 												<select class='sortBy' name='sortBy' onchange="this.form.submit();">
 													<option value="">Default</option>
 													<option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Name</option>
@@ -160,7 +160,7 @@
 																	<a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" class="wishlist" data-id="{{$product->id}}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
 																</div>
 																<div class="product-action-2">
-																	<a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+																	<a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Tambahkan ke Keranjang</a>
 																</div>
 															</div>
 														</div>
@@ -173,14 +173,14 @@
 																@php
 																	$after_discount=($product->price-($product->price*$product->discount)/100);
 																@endphp
-																<span>${{number_format($after_discount,2)}}</span>
-																<del>${{number_format($product->price,2)}}</del>
+																<span>Rp. {{number_format($after_discount,0)}}</span>
+																<del>Rp. {{number_format($product->price,0)}}</del>
 															</div>
 															<h3 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
 														{{-- <p>{!! html_entity_decode($product->summary) !!}</p> --}}
 														</div>
 														<p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
-														<a href="javascript:void(0)" class="btn cart" data-id="{{$product->id}}">Buy Now!</a>
+														<a href="javascript:void(0)" class="btn cart" data-id="{{$product->id}}">Beli sekarang!</a>
 													</div>
 												</div>
 											</div>
@@ -188,7 +188,7 @@
 										<!-- End Single List -->
 									@endforeach
 								@else
-									<h4 class="text-warning" style="margin:100px auto;">There are no products.</h4>
+									<h4 class="text-warning" style="margin:100px auto;">Tidak ada Produk.</h4>
 								@endif
 							</div>
 							 <div class="row">
@@ -266,7 +266,7 @@
 												@php
 													$after_discount=($product->price-($product->price*$product->discount)/100);
 												@endphp
-												<h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>    ${{number_format($after_discount,2)}}  </h3>
+												<h3><small><del class="text-muted">Rp. {{number_format($product->price,0)}}</del></small>    Rp. {{number_format($after_discount,0)}}  </h3>
 												<div class="quickview-peragraph">
 													<p>{!! html_entity_decode($product->summary) !!}</p>
 												</div>
@@ -305,7 +305,7 @@
 														<!--/ End Input Order -->
 													</div>
 													<div class="add-to-cart">
-														<button type="submit" class="btn">Add to cart</button>
+														<button type="submit" class="btn">Tambahkan ke keranjang</button>
 														<a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
 													</div>
 												</form>

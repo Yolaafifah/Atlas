@@ -11,10 +11,10 @@
         </div>
     </div>
    <div class="card-header py-3">
-     <h4 class=" font-weight-bold">Profile</h4>
+     <h4 class=" font-weight-bold">Profil</h4>
      <ul class="breadcrumbs">
          <li><a href="{{url('/admin/order')}}" style="color:#999">Dashboard</a></li>
-         <li><a href="" class="active text-primary">Profile Page</a></li>
+         <li><a href="" class="active text-primary">Halaman Profil</a></li>
      </ul>
    </div>
    <div class="card-body">
@@ -39,7 +39,7 @@
                 <form class="border px-4 pt-2 pb-3" method="POST" action="{{route('user-profile-update',$profile->id)}}">
                     @csrf
                     <div class="form-group">
-                        <label for="inputTitle" class="col-form-label">Name</label>
+                        <label for="inputTitle" class="col-form-label">Nama</label>
                       <input id="inputTitle" type="text" name="name" placeholder="Enter name"  value="{{$profile->name}}" class="form-control">
                       @error('name')
                       <span class="text-danger">{{$message}}</span>
@@ -55,11 +55,11 @@
                       </div>
 
                       <div class="form-group">
-                      <label for="inputPhoto" class="col-form-label">Photo</label>
+                      <label for="inputPhoto" class="col-form-label">Gambar</label>
                       <div class="input-group">
                           <span class="input-group-btn">
                               <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                              <i class="fa fa-picture-o"></i> Choose
+                              <i class="fa fa-picture-o"></i> Pilih
                               </a>
                           </span>
                           <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$profile->photo}}">
@@ -71,7 +71,7 @@
                       <div class="form-group">
                           <label for="role" class="col-form-label">Role</label>
                           <select name="role" class="form-control">
-                              <option value="">-----Select Role-----</option>
+                              <option value="">-----Pilih Role-----</option>
                                   <option value="admin" {{(($profile->role=='admin')? 'selected' : '')}}>Admin</option>
                                   <option value="user" {{(($profile->role=='user')? 'selected' : '')}}>User</option>
                           </select>

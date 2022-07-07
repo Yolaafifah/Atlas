@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Post Category Lists</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Kategori Artikel</h6>
       <a href="{{route('post-category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Post Category</a>
     </div>
     <div class="card-body">
@@ -18,26 +18,21 @@
         <table class="table table-bordered" id="post-category-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
+              <th>No.</th>
+              <th>Judul</th>
               <th>Slug</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Status</th>
-              <th>Action</th>
-              </tr>
-          </tfoot>
+          
           <tbody>
+            @php
+            $no = 1;
+            @endphp
             @foreach($postCategories as $data)   
                 <tr>
-                    <td>{{$data->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$data->title}}</td>
                     <td>{{$data->slug}}</td>
                     <td>
@@ -81,7 +76,7 @@
         </table>
         <span style="float:right">{{$postCategories->links()}}</span>
         @else
-          <h6 class="text-center">No Post Category found!!! Please create post category</h6>
+          <h6 class="text-center">Tidak ada kategori postingan yang ditemukan!!! Silakan buat kategori Posting</h6>
         @endif
       </div>
     </div>

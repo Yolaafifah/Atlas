@@ -12,8 +12,10 @@ use Notification;
 use Helper;
 use Illuminate\Support\Str;
 use App\Notifications\StatusNotification;
+use Carbon\Carbon;
 
-class OrderController extends Controller
+
+class RekapController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,8 +25,20 @@ class OrderController extends Controller
     public function index()
     {
         $orders=Order::orderBy('id','DESC')->paginate(10);
+        $fromDates = Carbon::parse(date(request('from_date')))->format('Y-m-d');
+        $toDates = Carbon::parse(date(request('to_date')))->format('Y-m-d');
+        $found = true;
+        if (request('from_date') && request('to_date')) {
+            $orders = Order::where('created_at', '>=', $fromDates)
+                ->where('created_at', '<=', $toDates)
+                ->orderBy('created_at', 'desc')->paginate(10);
+            $data = false;
+            if ($orders->count()) {
+                $data = true;
+            }
+        }
         $user=User::all();
-        return view('backend.order.index',compact('orders','user'));
+        return view('backend.rekap_penjualan.index',compact('orders','user'));
         
     }
 

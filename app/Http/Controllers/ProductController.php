@@ -70,6 +70,8 @@ class ProductController extends Controller
         }
         $data['slug']=$slug;
         $data['is_featured']=$request->input('is_featured',0);
+        $data['photo'] = "/storage/photos/1/Products/".$request->photo;
+            
         $size=$request->input('size');
         if($size){
             $data['size']=implode(',',$size);
@@ -147,7 +149,11 @@ class ProductController extends Controller
         ]);
 
         $data=$request->all();
+        // dd($data);
         $data['is_featured']=$request->input('is_featured',0);
+       
+            $data['photo'] = "/storage/photos/1/Products/".$request->photo;
+            
         $size=$request->input('size');
         if($size){
             $data['size']=implode(',',$size);

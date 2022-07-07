@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Banners List</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Banner</h6>
       <a href="{{route('banner.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Banner</a>
     </div>
     <div class="card-body">
@@ -18,35 +18,33 @@
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
+              <th>No.</th>
+              <th>Judul</th>
               <th>Slug</th>
-              <th>Photo</th>
+              <th>Gambar</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
-              </tr>
-          </tfoot>
+          
           <tbody>
+            @php
+            $no = 1;
+            @endphp
             @foreach($banners as $banner)   
                 <tr>
-                    <td>{{$banner->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$banner->title}}</td>
                     <td>{{$banner->slug}}</td>
                     <td>
                         @if($banner->photo)
-                            <img src="{{$banner->photo}}" class="img-fluid zoom" style="max-width:80px" alt="{{$banner->photo}}">
+                            @php
+                              $photo=explode(',',$banner->photo);
+                              // dd($photo);
+                            @endphp
+                            <img src="{{url($banner->photo)}}" class="img-fluid zoom" style="max-width:80px" alt="{{$banner->photo}}">
                         @else
-                            <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid zoom" style="max-width:100%" alt="avatar.png">
+                            <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                         @endif
                     </td>
                     <td>

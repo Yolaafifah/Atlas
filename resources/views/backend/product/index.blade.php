@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Produk</h6>
       <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Product</a>
     </div>
     <div class="card-body">
@@ -18,40 +18,26 @@
         <table class="table table-bordered" id="product-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Is Featured</th>
-              <th>Price</th>
-              <th>Discount</th>
-              <th>Size</th>
-              <th>Condition</th>
-              <th>Brand</th>
+              <th>No.</th>
+              <th>Judul</th>
+              <th>Kategori</th>
+              <!-- <th>Is Featured</th> -->
+              <th>Harga</th>
+              <th>Diskon</th>
+              <th>Ukuran</th>
+              <th>Kondisi</th>
+              <th>Merk</th>
               <th>Stock</th>
-              <th>Photo</th>
+              <th>Gambar</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Is Featured</th>
-              <th>Price</th>
-              <th>Discount</th>
-              <th>Size</th>
-              <th>Condition</th>
-              <th>Brand</th>
-              <th>Stock</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
+          
           <tbody>
-
+            @php
+            $no = 1;
+            @endphp
             @foreach($products as $product)
               @php
               $sub_cat_info=DB::table('categories')->select('title')->where('id',$product->child_cat_id)->get();
@@ -59,14 +45,14 @@
               $brands=DB::table('brands')->select('title')->where('id',$product->brand_id)->get();
               @endphp
                 <tr>
-                    <td>{{$product->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$product->title}}</td>
                     <td>{{$product->title}}
                       <sub>
                           {{$product->sub_cat_info->title ?? ''}}
                       </sub>
                     </td>
-                    <td>{{(($product->is_featured==1)? 'Yes': 'No')}}</td>
+                    <!-- <td>{{(($product->is_featured==1)? 'Yes': 'No')}}</td> -->
                     <td>Rp. {{$product->price}} /-</td>
                     <td>  {{$product->discount}}% OFF</td>
                     <td>{{$product->size}}</td>
@@ -85,7 +71,7 @@
                               $photo=explode(',',$product->photo);
                               // dd($photo);
                             @endphp
-                            <img src="{{$photo[0]}}" class="img-fluid zoom" style="max-width:80px" alt="{{$product->photo}}">
+                            <img src="{{url($product->photo)}}" class="img-fluid zoom" style="max-width:80px" alt="{{$product->photo}}">
                         @else
                             <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                         @endif
@@ -111,7 +97,7 @@
         </table>
         <span style="float:right">{{$products->links()}}</span>
         @else
-          <h6 class="text-center">No Products found!!! Please create Product</h6>
+          <h6 class="text-center">Tidak ada Produk yang ditemukan!!! Silakan buat Produk</h6>
         @endif
       </div>
     </div>

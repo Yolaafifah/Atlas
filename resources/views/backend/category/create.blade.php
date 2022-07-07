@@ -3,7 +3,7 @@
 @section('main-content')
 
 <div class="card">
-    <h5 class="card-header">Add Category</h5>
+    <h5 class="card-header">Tambah Kategori</h5>
     <div class="card-body">
       <form method="post" action="{{route('category.store')}}">
         {{csrf_field()}}
@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group">
-          <label for="summary" class="col-form-label">Summary</label>
+          <label for="summary" class="col-form-label">Ringkasan</label>
           <textarea class="form-control" id="summary" name="summary">{{old('summary')}}</textarea>
           @error('summary')
           <span class="text-danger">{{$message}}</span>
@@ -24,15 +24,15 @@
         </div>
 
         <div class="form-group">
-          <label for="is_parent">Is Parent</label><br>
-          <input type="checkbox" name='is_parent' id='is_parent' value='1' checked> Yes                        
+          <label for="is_parent">Utama</label><br>
+          <input type="checkbox" name='is_parent' id='is_parent' value='1' checked> Ya                        
         </div>
         {{-- {{$parent_cats}} --}}
 
         <div class="form-group d-none" id='parent_cat_div'>
-          <label for="parent_id">Parent Category</label>
+          <label for="parent_id">Kategori Utama</label>
           <select name="parent_id" class="form-control">
-              <option value="">--Select any category--</option>
+              <option value="">--Pilih kategori utama--</option>
               @foreach($parent_cats as $key=>$parent_cat)
                   <option value='{{$parent_cat->id}}'>{{$parent_cat->title}}</option>
               @endforeach
@@ -40,11 +40,11 @@
         </div>
 
         <div class="form-group">
-          <label for="inputPhoto" class="col-form-label">Photo</label>
+          <label for="inputPhoto" class="col-form-label">Gambar</label>
           <div class="input-group">
               <span class="input-group-btn">
                   <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                  <i class="fa fa-picture-o"></i> Choose
+                  <i class="fa fa-picture-o"></i> Pilih
                   </a>
               </span>
           <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old('photo')}}">
@@ -59,8 +59,8 @@
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+              <option value="active">Aktif</option>
+              <option value="inactive">Tidak Aktif</option>
           </select>
           @error('status')
           <span class="text-danger">{{$message}}</span>

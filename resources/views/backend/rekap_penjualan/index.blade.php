@@ -8,8 +8,40 @@
             @include('backend.layouts.notification')
          </div>
      </div>
+     <div class="card-content">
+                    <form action="{{ route('rekap_penjualan.index') }}" method="GET">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4 mb-1">
+                                    <label for="date">Dari</label>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input required type="date" name="from_date" id="from_date" class="form-control" placeholder="Choose a date" id="password-id-icon" value="{{ request('from_date') }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mb-1">
+                                    <label for="date">Untuk</label>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input required type="date" name="to_date" id="to_date" class="form-control" placeholder="Choose a date" id="password-id-icon" value="{{ request('to_date') }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 mb-1 d-flex">
+                                    <div class="dropdown  mt-4 me-3">
+                                        <button type="submit" class="btn btn-primary loading-search"><i class="bi bi-search"></i>Cari</button>
+                                    </div>
+                                    <div class="refresh mt-4">
+                                        <a href="{{ route('rekap_penjualan.index') }}"" class="btn btn-dark loading"><i class="bi bi-arrow-repeat"></i>Refresh</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mb-2 loading-text d-none">Loading ...</div>
+                        </div>
+                    </form>
+
+
+                </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Pesanan</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Rekap Penjualan</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -19,10 +51,11 @@
             <tr>
               <th>No.</th>
               <th>No. Pesanan</th>
+              <th>Tanggal Pesanan</th>
               <th>Nama</th>
               <th>Email</th>
               <th>Jumlah</th>
-              <th>Biaya Ongkos Kirim</th>
+              <th>Biaya</th>
               <th>Jumlah Total</th>
               <th>Status</th>
               <th>Supir</th>
@@ -41,6 +74,7 @@
                 <tr>
                     <td>{{$no++}}</td>
                     <td>{{$order->order_number}}</td>
+                    <td>{{$order->created_at}}</td>
                     <td>{{$order->first_name}} {{$order->last_name}}</td>
                     <td>{{$order->email}}</td>
                     <td>{{$order->quantity}}</td>

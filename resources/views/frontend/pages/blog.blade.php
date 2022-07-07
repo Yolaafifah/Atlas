@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','PT. Jatim Es Tube - Gresik || Blog Page')
+@section('title','PT. Jatim Es Tube - Gresik || Halaman Artikel')
 
 @section('main-content')
     <!-- Breadcrumbs -->
@@ -11,7 +11,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                             <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="javascript:void(0);">Blog Grid Sidebar</a></li>
+                            <li class="active"><a href="javascript:void(0);">Bilah Artikel</a></li>
                         </ul>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                                         </p>
                                         <a href="{{route('blog.detail',$post->slug)}}" class="title">{{$post->title}}</a>
                                         <p>{!! html_entity_decode($post->summary) !!}</p>
-                                        <a href="{{route('blog.detail',$post->slug)}}" class="more-btn">Continue Reading</a>
+                                        <a href="{{route('blog.detail',$post->slug)}}" class="more-btn">Lanjutkan Membaca</a>
                                     </div>
                                 </div>
                                 <!-- End Single Blog  -->
@@ -66,7 +66,7 @@
                         <!--/ End Single Widget -->
                         <!-- Single Widget -->
                         <div class="single-widget category">
-                            <h3 class="title">Blog Categories</h3>
+                            <h3 class="title">Kategori Artikel</h3>
                             <ul class="categor-list">
                                 @if(!empty($_GET['category']))
                                     @php
@@ -88,7 +88,7 @@
                         <!--/ End Single Widget -->
                         <!-- Single Widget -->
                         <div class="single-widget recent-post">
-                            <h3 class="title">Recent post</h3>
+                            <h3 class="title">Postingan Terbaru</h3>
                             @foreach($recent_posts as $post)
                                 <!-- Single Post -->
                                 <div class="single-post">

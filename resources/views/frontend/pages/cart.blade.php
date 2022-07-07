@@ -9,7 +9,7 @@
 					<div class="bread-inner">
 						<ul class="bread-list">
 							<li><a href="{{('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="">Cart</a></li>
+							<li class="active"><a href="">Keranjang</a></li>
 						</ul>
 					</div>
 				</div>
@@ -27,10 +27,10 @@
 					<table class="table shopping-summery">
 						<thead>
 							<tr class="main-hading">
-								<th>PRODUCT</th>
-								<th>NAME</th>
-								<th class="text-center">UNIT PRICE</th>
-								<th class="text-center">QUANTITY</th>
+								<th>PRODUK</th>
+								<th>NAMA</th>
+								<th class="text-center">PATOKAN HARGA</th>
+								<th class="text-center">JUMLAH</th>
 								<th class="text-center">TOTAL</th>
 								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
 							</tr>
@@ -49,7 +49,7 @@
 												<p class="product-name"><a href="{{route('product-detail',$cart->product['slug'])}}" target="_blank">{{$cart->product['title']}}</a></p>
 												<p class="product-des">{!!($cart['summary']) !!}</p>
 											</td>
-											<td class="price" data-title="Price"><span>Rp. {{number_format($cart['price'],2)}}</span></td>
+											<td class="price" data-title="Price"><span>Rp. {{number_format($cart['price'],0)}}</span></td>
 											<td class="qty" data-title="Qty"><!-- Input Order -->
 												<div class="input-group">
 													<div class="button minus">
@@ -85,7 +85,7 @@
 								@else
 										<tr>
 											<td class="text-center">
-												There are no any carts available. <a href="{{route('product-grids')}}" style="color:blue;">Continue shopping</a>
+												Tidak ada keranjang yang tersedia <a href="{{route('product-grids')}}" style="color:blue;">Lanjutkan Belanja</a>
 
 											</td>
 										</tr>
@@ -104,28 +104,24 @@
 						<div class="row">
 							<div class="col-lg-8 col-md-5 col-12">
 								<div class="left">
-									<div class="coupon">
-									<form action="{{route('coupon-store')}}" method="POST">
+									
 											@csrf
-											<input name="code" placeholder="Enter Your Coupon">
-											<button class="btn">Apply</button>
-										</form>
-									</div>
+											
 									{{-- <div class="checkbox">`
 										@php
 											$shipping=DB::table('shippings')->where('status','active')->limit(1)->get();
 										@endphp
-										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" onchange="showMe('shipping');"> Shipping</label>
+										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" onchange="showMe('shipping');"> Ongkos Kirim</label>
 									</div> --}}
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
 									<ul>
-										<li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Cart Subtotal<span>Rp. {{number_format(Helper::totalCartPrice(),2)}}</span></li>
+										<li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}"> Subtotal Keranjang<span>Rp. {{number_format(Helper::totalCartPrice(),0)}}</span></li>
 
 										@if(session()->has('coupon'))
-										<li class="coupon_price" data-price="{{Session::get('coupon')['value']}}">You Save<span>Rp. {{number_format(Session::get('coupon')['value'],2)}}</span></li>
+										<li class="coupon_price" data-price="{{Session::get('coupon')['value']}}">Kamu simpan<span>Rp. {{number_format(Session::get('coupon')['value'],0)}}</span></li>
 										@endif
 										@php
 											$total_amount=Helper::totalCartPrice();
@@ -134,14 +130,14 @@
 											}
 										@endphp
 										@if(session()->has('coupon'))
-											<li class="last" id="order_total_price">You Pay<span>Rp. {{number_format($total_amount,2)}}</span></li>
+											<li class="last" id="order_total_price">Anda Membayar<span>Rp. {{number_format($total_amount,0)}}</span></li>
 										@else
-											<li class="last" id="order_total_price">You Pay<span>Rp. {{number_format($total_amount,2)}}</span></li>
+											<li class="last" id="order_total_price">Anda Membayar<span>Rp. {{number_format($total_amount,0)}}</span></li>
 										@endif
 									</ul>
 									<div class="button5">
 										<a href="{{route('checkout')}}" class="btn">Checkout</a>
-										<a href="{{route('product-grids')}}" class="btn">Continue shopping</a>
+										<a href="{{route('product-grids')}}" class="btn">Lanjutkan Belanja</a>
 									</div>
 								</div>
 							</div>
@@ -154,45 +150,7 @@
 	</div>
 	<!--/ End Shopping Cart -->
 
-	<!-- Start Shop Services Area  -->
-	<section class="shop-services section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6 col-12">
-					<!-- Start Single Service -->
-					<div class="single-service">
-						<i class="ti-rocket"></i>
-						<h4>Free shiping</h4>
-						<p>Orders over 100.000</p>
-					</div>
-					<!-- End Single Service -->
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<!-- Start Single Service -->
-					<div class="single-service">
-						<i class="ti-reload"></i>
-						<h4>Free Return</h4>
-						<p>Within 30 days returns</p>
-					</div>
-					<!-- End Single Service -->
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<!-- Start Single Service -->
-					<div class="single-service">
-						<i class="ti-lock"></i>
-						<h4>Sucure Payment</h4>
-						<p>100% secure payment</p>
-					</div>
-					<!-- End Single Service -->
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<!-- Start Single Service -->
-					<div class="single-service">
-						<i class="ti-tag"></i>
-						<h4>Best Peice</h4>
-						<p>Guaranteed price</p>
-					</div>
-					<!-- End Single Service -->
+	
 				</div>
 			</div>
 		</div>

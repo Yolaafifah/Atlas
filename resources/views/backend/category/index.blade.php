@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Category Lists</h6>
-      <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Category</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Kategori</h6>
+      <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Tambah Kategori</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -18,35 +18,27 @@
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
+              <th>No.</th>
+              <th>Judul</th>
               <th>Slug</th>
-              <th>Is Parent</th>
-              <th>Parent Category</th>
-              <th>Photo</th>
+              <th>Utama</th>
+              <th>Kategori Utama</th>
+              <th>Gambar</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Is Parent</th>
-              <th>Parent Category</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
+          
           <tbody>
+            @php
+            $no = 1;
+            @endphp
 
             @foreach($categories as $category)
               @php
               @endphp
                 <tr>
-                    <td>{{$category->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$category->title}}</td>
                     <td>{{$category->slug}}</td>
                     <td>{{(($category->is_parent==1)? 'Yes': 'No')}}</td>
@@ -81,7 +73,7 @@
         </table>
         <span style="float:right">{{$categories->links()}}</span>
         @else
-          <h6 class="text-center">No Categories found!!! Please create Category</h6>
+          <h6 class="text-center">Kategori tidak ditemukan!!! Harap buat Kategori</h6>
         @endif
       </div>
     </div>

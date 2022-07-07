@@ -15,9 +15,9 @@
                 <div class="carousel-item {{(($key==0)? 'active' : '')}}">
                     <img class="first-slide" src="{{ url($banner->photo) }}" alt="First slide">
                     <div class="carousel-caption d-none d-md-block text-left">
-                        <h1 class="wow fadeInDown">{{$banner->title}}</h1>
+                        <h2 class="wow fadeInDown">{{$banner->title}}</h2>
                         <p>{!! html_entity_decode($banner->description) !!}</p>
-                        <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
+                        <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Belanja Sekarang<i class="far fa-arrow-alt-circle-right"></i></i></a>
                     </div>
                 </div>
             @endforeach
@@ -48,37 +48,37 @@
             <div class="col-lg-3 col-md-6 col-12">
                 <!-- Start Single Service -->
                 <div class="single-service">
-                    <i class="ti-rocket"></i>
-                    <h4>Free shiping</h4>
-                    <p>Orders over 100.000</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-reload"></i>
-                    <h4>Free Return</h4>
-                    <p>Within 30 days returns</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-lock"></i>
-                    <h4>Sucure Payment</h4>
-                    <p>100% secure payment</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-tag"></i>
-                    <h4>Best Peice</h4>
-                    <p>Guaranteed price</p>
-                </div>
+						<i class="ti-rocket"></i>
+						<h4>Bebas biaya kirim</h4>
+						<p>Pesanan lebih dari 100.000</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-reload"></i>
+						<h4>Pengembalian Gratis</h4>
+						<p>Dalam 30 hari kembali</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-lock"></i>
+						<h4>Pembayaran yang aman</h4>
+						<p>100% pembayaran aman</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-tag"></i>
+						<h4>Harga terbaik</h4>
+						<p>harga terjamin</p>
+					</div>
                 <!-- End Single Service -->
             </div>
         </div>
@@ -152,7 +152,7 @@
                                         @php
                                             $after_discount=($product->price-($product->price*$product->discount)/100);
                                         @endphp
-                                        <h3><small><del class="text-muted">Rp. {{number_format($product->price,2)}}</del></small>    Rp. {{number_format($after_discount,2)}}  </h3>
+                                        <h3><small><del class="text-muted">Rp. {{number_format($product->price,0)}}</del></small>    Rp. {{number_format($after_discount,0)}}  </h3>
                                         <div class="quickview-peragraph">
                                             <p>{!! html_entity_decode($product->summary) !!}</p>
                                         </div>
@@ -160,7 +160,7 @@
                                             <div class="size">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-12">
-                                                        <h5 class="title">Size</h5>
+                                                        <h5 class="title">Ukuran</h5>
                                                         <select>
                                                             @php
                                                             $sizes=explode(',',$product->size);
@@ -204,7 +204,7 @@
                                                 <!--/ End Input Order -->
                                             </div>
                                             <div class="add-to-cart">
-                                                <button type="submit" class="btn">Add to cart</button>
+                                                <button type="submit" class="btn">Tambahkan ke keranjang</button>
                                                 <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
                                             </div>
                                         </form>

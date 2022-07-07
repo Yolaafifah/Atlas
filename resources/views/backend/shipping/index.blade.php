@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Shipping List</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Ongkos Kirim</h6>
       <a href="{{route('shipping.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Shipping</a>
     </div>
     <div class="card-body">
@@ -18,26 +18,21 @@
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Price</th>
+              <th>No.</th>
+              <th>Judul</th>
+              <th>Harga</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>Action</th>
-              </tr>
-          </tfoot>
+          
           <tbody>
+            @php
+            $no = 1;
+            @endphp
             @foreach($shippings as $shipping)   
                 <tr>
-                    <td>{{$shipping->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$shipping->type}}</td>
                     <td>Rp. {{$shipping->price}}</td>
                     <td>
@@ -81,7 +76,7 @@
         </table>
         <span style="float:right">{{$shippings->links()}}</span>
         @else
-          <h6 class="text-center">No shippings found!!! Please create shipping</h6>
+          <h6 class="text-center">Tidak ada pengiriman ditemukan!!! Silakan buat pengiriman</h6>
         @endif
       </div>
     </div>

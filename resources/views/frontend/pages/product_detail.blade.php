@@ -14,7 +14,7 @@
 	<meta property="og:image" content="{{$product_detail->photo}}">
 	<meta property="og:description" content="{{$product_detail->description}}">
 @endsection
-@section('title','PT. Jatim Es Tube - Gresik || PRODUCT DETAIL')
+@section('title','PT. Jatim Es Tube - Gresik || DETAIL PRODUK')
 @section('main-content')
 
 		<!-- Breadcrumbs -->
@@ -25,7 +25,7 @@
 						<div class="bread-inner">
 							<ul class="bread-list">
 								<li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-								<li class="active"><a href="">Shop Details</a></li>
+								<li class="active"><a href="">Detail Belanja</a></li>
 							</ul>
 						</div>
 					</div>
@@ -84,7 +84,7 @@
                                                 @php 
                                                     $after_discount=($product_detail->price-(($product_detail->price*$product_detail->discount)/100));
                                                 @endphp
-												<p class="price"><span class="discount">${{number_format($after_discount,2)}}</span><s>${{number_format($product_detail->price,2)}}</s> </p>
+												<p class="price"><span class="discount">Rp. {{number_format($after_discount,0)}}</span><s>Rp. {{number_format($product_detail->price,0)}}</s> </p>
 												<p class="description">{!!($product_detail->summary)!!}</p>
 											</div>
 											<!--/ End Description -->
@@ -120,7 +120,7 @@
 												<form action="{{route('single-add-to-cart')}}" method="POST">
 													@csrf 
 													<div class="quantity">
-														<h6>Quantity :</h6>
+														<h6>Jumlah :</h6>
 														<!-- Input Order -->
 														<div class="input-group">
 															<div class="button minus">
@@ -139,14 +139,14 @@
 													<!--/ End Input Order -->
 													</div>
 													<div class="add-to-cart mt-4">
-														<button type="submit" class="btn">Add to cart</button>
+														<button type="submit" class="btn">Tambah Ke Keranjang</button>
 														<a href="{{route('add-to-wishlist',$product_detail->slug)}}" class="btn min"><i class="ti-heart"></i></a>
 													</div>
 												</form>
 
-												<p class="cat">Category :<a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title']}}</a></p>
+												<p class="cat">Kategori :<a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title']}}</a></p>
 												@if($product_detail->sub_cat_info)
-												<p class="cat mt-1">Sub Category :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a></p>
+												<p class="cat mt-1">Sub Kategori :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a></p>
 												@endif
 												<p class="availability">Stock : @if($product_detail->stock>0)<span class="badge badge-success">{{$product_detail->stock}}</span>@else <span class="badge badge-danger">{{$product_detail->stock}}</span>  @endif</p>
 											</div>
@@ -160,8 +160,8 @@
 											<div class="nav-main">
 												<!-- Tab Nav -->
 												<ul class="nav nav-tabs" id="myTab" role="tablist">
-													<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a></li>
-													<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews</a></li>
+													<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#description" role="tab">Deskripsi</a></li>
+													<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Ulasan</a></li>
 												</ul>
 												<!--/ End Tab Nav -->
 											</div>
@@ -188,10 +188,10 @@
 																<!-- Review -->
 																<div class="comment-review">
 																	<div class="add-review">
-																		<h5>Add A Review</h5>
-																		<p>Your email address will not be published. Required fields are marked</p>
+																		<h5>Tambah Ulasan</h5>
+																		<p>Alamat email Anda tidak akan dipublikasikan. Bidang yang harus diisi ditandai</p>
 																	</div>
-																	<h4>Your Rating <span class="text-danger">*</span></h4>
+																	<h4>Penilaian Anda<span class="text-danger">*</span></h4>
 																	<div class="review-inner">
 																			<!-- Form -->
 																@auth
@@ -221,7 +221,7 @@
                                                                         </div>
 																		<div class="col-lg-12 col-12">
 																			<div class="form-group">
-																				<label>Write a review</label>
+																				<label>Tulis Ulasan</label>
 																				<textarea name="review" rows="6" placeholder="" ></textarea>
 																			</div>
 																		</div>
@@ -234,7 +234,7 @@
 																</form>
 																@else 
 																<p class="text-center p-5">
-																	You need to <a href="{{route('login.form')}}" style="color:rgb(54, 54, 204)">Login</a> OR <a style="color:blue" href="{{route('register.form')}}">Register</a>
+																	Anda Perlu Untuk <a href="{{route('login.form')}}" style="color:rgb(54, 54, 204)">Login</a> Atau <a style="color:blue" href="{{route('register.form')}}">Register</a>
 
 																</p>
 																<!--/ End Form -->
@@ -251,7 +251,7 @@
 																			}
 																		@endphp --}}
 																		<h4>{{ceil($product_detail->getReview->avg('rate'))}} <span>(Overall)</span></h4>
-																		<span>Based on {{$product_detail->getReview->count()}} Comments</span>
+																		<span>Based on {{$product_detail->getReview->count()}} Komentar</span>
 																	</div>
 																	@foreach($product_detail['getReview'] as $data)
 																	<!-- Single Rating -->
@@ -308,7 +308,7 @@
             <div class="row">
 				<div class="col-12">
 					<div class="section-title">
-						<h2>Related Products</h2>
+						<h2>Produk-produk terkait</h2>
 					</div>
 				</div>
             </div>
@@ -332,12 +332,12 @@
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
-                                                <a data-toggle="modal" data-target="#modelExample" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                <a data-toggle="modal" data-target="#modelExample" title="Quick View" href="#"><i class=" ti-eye"></i><span>Toko Cepat</span></a>
+                                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Tambahkan ke Daftar Keinginan</span></a>
+                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Tambahkan untuk membandingkan</span></a>
                                             </div>
                                             <div class="product-action-2">
-                                                <a title="Add to cart" href="#">Add to cart</a>
+                                                <a title="Add to cart" href="#">Masukkan ke keranjang</a>
                                             </div>
                                         </div>
                                     </div>
@@ -347,8 +347,8 @@
                                             @php 
                                                 $after_discount=($data->price-(($data->discount*$data->price)/100));
                                             @endphp
-                                            <span class="old">${{number_format($data->price,2)}}</span>
-                                            <span>${{number_format($after_discount,2)}}</span>
+                                            <span class="old">Rp. {{number_format($data->price,0)}}</span>
+                                            <span>Rp. {{number_format($after_discount,0)}}</span>
                                         </div>
                                       
                                     </div>
@@ -419,7 +419,7 @@
                             <div class="size">
                                 <div class="row">
                                     <div class="col-lg-6 col-12">
-                                        <h5 class="title">Size</h5>
+                                        <h5 class="title">Ukuran</h5>
                                         <select>
                                             <option selected="selected">s</option>
                                             <option>m</option>
@@ -456,7 +456,7 @@
                                 <!--/ End Input Order -->
                             </div>
                             <div class="add-to-cart">
-                                <a href="#" class="btn">Add to cart</a>
+                                <a href="#" class="btn">Tambahkan ke Keranjang</a>
                                 <a href="#" class="btn min"><i class="ti-heart"></i></a>
                                 <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
                             </div>

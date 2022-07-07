@@ -364,11 +364,11 @@ class FrontendController extends Controller
             if (Auth::user()->role == 'admin') {
                 return redirect('/admin/order')->with('success', 'You are login success ');
             } else if (Auth::user()->role == 'user') {
-                return redirect('/admin/order')->with('success', 'You are login success ');
+                return redirect('/')->with('success', 'You are login success ');
             } else if (Auth::user()->role == 'supir') {
-                return redirect('/admin/order')->with('success', 'You are login success ');
+                return redirect('/supir/order')->with('success', 'You are login success ');
             } else if (Auth::user()->role == 'gudang') {
-                return redirect('/admin/order')->with('success', 'You are login success ');
+                return redirect('/gudang/rekap_pengiriman')->with('success', 'You are login success ');
             }
         } else {
             request()->session()->flash('error', 'Invalid email and password pleas try again!');

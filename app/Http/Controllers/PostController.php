@@ -65,6 +65,7 @@ class PostController extends Controller
             $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
         }
         $data['slug']=$slug;
+        $data['photo'] = "/storage/photos/1/Blog/".$request->photo;
 
         $tags=$request->input('tags');
         if($tags){
@@ -135,7 +136,9 @@ class PostController extends Controller
         ]);
 
         $data=$request->all();
+        $data['photo'] = "/storage/photos/1/Blog/".$request->photo;
         $tags=$request->input('tags');
+
         // return $tags;
         if($tags){
             $data['tags']=implode(',',$tags);

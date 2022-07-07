@@ -23,13 +23,13 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Shop
+            Belanja
         </div>
     <!--Orders -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('user.order.index')}}">
             <i class="fas fa-hammer fa-chart-area"></i>
-            <span>Orders</span>
+            <span>Pesanan</span>
         </a>
     </li>
 
@@ -37,7 +37,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{route('user.productreview.index')}}">
             <i class="fas fa-comments"></i>
-            <span>Reviews</span></a>
+            <span>Ulasan</span></a>
     </li>
     
 
@@ -46,13 +46,13 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-      Posts
+      Artikel
     </div>
     <!-- Comments -->
     <li class="nav-item">
       <a class="nav-link" href="{{route('user.post-comment.index')}}">
           <i class="fas fa-comments fa-chart-area"></i>
-          <span>Comments</span>
+          <span>Komentar</span>
       </a>
     </li>
     <!-- Sidebar Toggler (Sidebar) -->

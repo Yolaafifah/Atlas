@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RekapController;
+use App\Http\Controllers\RekapPengirimanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,6 +128,9 @@ Route::group(['prefix' => '/admin'], function () {
 
     // Order
     Route::resource('/order', 'OrderController');
+    // Rekap Penjualan
+    Route::get('/rekap_penjualan', 'RekapController@index')->name('rekap_penjualan.index');
+    
     // Shipping
     Route::resource('/shipping', 'ShippingController');
     // Coupon
@@ -143,7 +148,10 @@ Route::group(['prefix' => '/admin'], function () {
     Route::post('change-password', 'AdminController@changPasswordStore')->name('change.password');
 });
 
-
+Route::group(['prefix' => '/gudang'], function () {
+    // Rekap Pengiriman
+    Route::get('/rekap_pengiriman', 'RekapPengirimanController@index')->name('rekap_pengiriman.index');
+});
 
 // User section start
 Route::group(['prefix' => '/user', 'middleware' => ['user']], function () {

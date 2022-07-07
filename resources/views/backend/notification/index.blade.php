@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','PT. Jatim Es Tube - Gresik || All Notifications')
+@section('title','PT. Jatim Es Tube - Gresik || Notifikasi')
 @section('main-content')
 <div class="card">
     <div class="row">
@@ -7,16 +7,16 @@
            @include('backend.layouts.notification')
         </div>
     </div>
-  <h5 class="card-header">Notifications</h5>
+  <h5 class="card-header">Notifikasi</h5>
   <div class="card-body">
     @if(count(Auth::user()->Notifications)>0)
     <table class="table  table-hover admin-table" id="notification-dataTable">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Time</th>
-          <th scope="col">Title</th>
-          <th scope="col">Action</th>
+          <th scope="col">Waktu</th>
+          <th scope="col">Judul</th>
+          <th scope="col">Aksi</th>
         </tr>
       </thead>
       <tbody>
@@ -40,7 +40,7 @@
       </tbody>
     </table>
     @else
-      <h2>Notifications Empty!</h2>
+      <h2>Notifikasi Kosong!</h2>
     @endif
   </div>
 </div>

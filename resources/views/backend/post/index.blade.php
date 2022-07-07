@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Post Lists</h6>
-      <a href="{{route('post.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Post</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Artikel</h6>
+      <a href="{{route('post.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Tambah Artikel</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -18,30 +18,21 @@
         <table class="table table-bordered" id="product-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Category</th>
+              <th>No. </th>
+              <th>Judul</th>
+              <th>Kategori</th>
               <th>Tag</th>
-              <th>Author</th>
-              <th>Photo</th>
+              <th>Penulis</th>
+              <th>Gambar</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Tag</th>
-              <th>Author</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
+          
           <tbody>
-           
+            @php
+            $no = 1;
+            @endphp
             @foreach($posts as $post)   
               @php 
               $author_info=DB::table('users')->select('name')->where('id',$post->added_by)->get();
@@ -50,9 +41,9 @@
 
               @endphp
                 <tr>
-                    <td>{{$post->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$post->title}}</td>
-                    <td>{{$post->cat_info->title}}</td>
+                    <td>{{$post->cat_info='title'}}</td>
                     <td>{{$post->tags}}</td>
 
                     <td>
@@ -62,7 +53,11 @@
                     </td>
                     <td>
                         @if($post->photo)
-                            <img src="{{$post->photo}}" class="img-fluid zoom" style="max-width:80px" alt="{{$post->photo}}">
+                            @php
+                              $photo=explode(',',$post->photo);
+                              // dd($photo);
+                            @endphp
+                            <img src="{{url($post->photo)}}" class="img-fluid zoom" style="max-width:80px" alt="{{$post->photo}}">
                         @else
                             <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                         @endif
@@ -88,7 +83,7 @@
         </table>
         <span style="float:right">{{$posts->links()}}</span>
         @else
-          <h6 class="text-center">No posts found!!! Please create Post</h6>
+          <h6 class="text-center">Tidak ada postingan yang ditemukan!!! Silakan buat Postingan</h6>
         @endif
       </div>
     </div>

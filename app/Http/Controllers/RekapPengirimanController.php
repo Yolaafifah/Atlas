@@ -13,7 +13,7 @@ use Helper;
 use Illuminate\Support\Str;
 use App\Notifications\StatusNotification;
 
-class OrderController extends Controller
+class RekapPengirimanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class OrderController extends Controller
     {
         $orders=Order::orderBy('id','DESC')->paginate(10);
         $user=User::all();
-        return view('backend.order.index',compact('orders','user'));
+        return view('backend.rekap_pengiriman.index',compact('orders','user'));
         
     }
 

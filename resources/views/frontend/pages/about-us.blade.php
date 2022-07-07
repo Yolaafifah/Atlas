@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','PT. Jatim Es Tube - Gresik || About Us')
+@section('title','PT. Jatim Es Tube - Gresik || Tentang Kami')
 
 @section('main-content')
 
@@ -12,7 +12,7 @@
 					<div class="bread-inner">
 						<ul class="bread-list">
 							<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="blog-single.html">About Us</a></li>
+							<li class="active"><a href="blog-single.html">Tentang Kami</a></li>
 						</ul>
 					</div>
 				</div>
@@ -33,8 +33,8 @@
 							<h3>Welcome To <span>PT. Jatim Es Tube - Gresik</span></h3>
 							<p>@foreach($settings as $data) {{$data->description}} @endforeach</p>
 							<div class="button">
-								<a href="{{route('blog')}}" class="btn">Our Blog</a>
-								<a href="{{route('contact')}}" class="btn primary">Contact Us</a>
+								<a href="{{route('blog')}}" class="btn">Artikel Kami</a>
+								<a href="{{route('contact')}}" class="btn primary">Kontak Kami</a>
 							</div>
 						</div>
 					</div>
@@ -60,8 +60,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-rocket"></i>
-						<h4>Free shiping</h4>
-						<p>Orders over 100.000</p>
+						<h4>Bebas biaya kirim</h4>
+						<p>Pesanan lebih dari 100.000</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -69,8 +69,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-reload"></i>
-						<h4>Free Return</h4>
-						<p>Within 30 days returns</p>
+						<h4>Pengembalian Gratis</h4>
+						<p>Dalam 30 hari kembali</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -78,8 +78,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-lock"></i>
-						<h4>Sucure Payment</h4>
-						<p>100% secure payment</p>
+						<h4>Pembayaran yang aman</h4>
+						<p>100% pembayaran aman</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -87,8 +87,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-tag"></i>
-						<h4>Best Peice</h4>
-						<p>Guaranteed price</p>
+						<h4>Harga terbaik</h4>
+						<p>harga terjamin</p>
 					</div>
 					<!-- End Single Service -->
 				</div>

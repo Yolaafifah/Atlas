@@ -50,6 +50,7 @@ class BannerController extends Controller
             $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
         }
         $data['slug']=$slug;
+        $data['photo'] = "/storage/photos/1/Banner/".$request->photo;
         // return $slug;
         $status=Banner::create($data);
         if($status){
@@ -101,6 +102,7 @@ class BannerController extends Controller
             'status'=>'required|in:active,inactive',
         ]);
         $data=$request->all();
+        $data['photo'] = "/storage/photos/1/Banner/".$request->photo;
         // $slug=Str::slug($request->title);
         // $count=Banner::where('slug',$slug)->count();
         // if($count>0){

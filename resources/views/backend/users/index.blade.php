@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Users List</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Daftar User</h6>
       <a href="{{route('users.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a>
     </div>
     <div class="card-body">
@@ -17,39 +17,35 @@
         <table class="table table-bordered" id="user-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Name</th>
+              <th>No.</th>
+              <th>Nama</th>
               <th>Email</th>
-              <th>Photo</th>
-              <th>Join Date</th>
+              <th>Gambar</th>
+              <th>Tanggal Bergabung</th>
               <th>Role</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-                <th>S.N.</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Photo</th>
-                <th>Join Date</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-          </tfoot>
+          
           <tbody>
+            @php
+            $no = 1;
+            @endphp
             @foreach($users as $user)   
                 <tr>
-                    <td>{{$user->id}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>
                         @if($user->photo)
-                            <img src="{{$user->photo}}" class="img-fluid rounded-circle" style="max-width:50px" alt="{{$user->photo}}">
+                            @php
+                              $photo=explode(',',$user->photo);
+                              // dd($photo);
+                            @endphp
+                            <img src="{{url($user->photo)}}" class="img-fluid zoom" style="max-width:80px" alt="{{$user->photo}}">
                         @else
-                            <img src="{{asset('backend/img/avatar.png')}}" class="img-fluid rounded-circle" style="max-width:50px" alt="avatar.png">
+                            <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                         @endif
                     </td>
                     <td>{{(($user->created_at)? $user->created_at->diffForHumans() : '')}}</td>

@@ -86,15 +86,15 @@
       <h6>Invoice to</h6>
        <h3>{{$order->first_name}} {{$order->last_name}}</h3>
        <div class="address">
-        <p>
-          <strong>Country: </strong>
+        <!-- <p> -->
+          <!-- <strong>Country: </strong>
           {{$order->country}}
-        </p>
+        </p> -->
         <p>
-          <strong>Address: </strong>
+          <strong>Alamat: </strong>
           {{ $order->address1 }} OR {{ $order->address2}}
         </p>
-         <p><strong>Phone:</strong> {{ $order->phone }}</p>
+         <p><strong>No. HP:</strong> {{ $order->phone }}</p>
          <p><strong>Email:</strong> {{ $order->email }}</p>
        </div>
     </div>
@@ -107,13 +107,13 @@
   </div>
   <section class="order_details pt-3">
     <div class="table-header">
-      <h5>Order Details</h5>
+      <h5>Detail Pesanan</h5>
     </div>
     <table class="table table-bordered table-stripe">
       <thead>
         <tr>
-          <th scope="col" class="col-6">Product</th>
-          <th scope="col" class="col-3">Quantity</th>
+          <th scope="col" class="col-6">Produk</th>
+          <th scope="col" class="col-3">Jumlah</th>
           <th scope="col" class="col-3">Total</th>
         </tr>
       </thead>
@@ -142,13 +142,13 @@
       {{-- @if(!empty($order->coupon))
         <tr>
           <th scope="col" class="empty"></th>
-          <th scope="col" class="text-right">Discount:</th>
+          <th scope="col" class="text-right">Diskon:</th>
           <th scope="col"><span>-{{$order->coupon->discount(Helper::orderPrice($order->id, $order->user->id))}}{{Helper::base_currency()}}</span></th>
         </tr>
       @endif --}}
         <tr>
           <th scope="col" class="empty"></th>
-          <th scope="col" class="text-right ">Shipping:</th>
+          <th scope="col" class="text-right ">Ongkos Kirim:</th>
           <th><span>Rp. {{number_format($order->delivery_charge,0)}}</span></th>
         </tr>
         <tr>
@@ -164,15 +164,15 @@
     </table>
   </section>
   <div class="thanks mt-3">
-    <h4>Thank you for your business !!</h4>
+    <h4>Terima kasih!!</h4>
   </div>
   <div class="authority float-right mt-5">
     <p>-----------------------------------</p>
-    <h5>Authority Signature:</h5>
+    <h5>Tanda Tangan:</h5>
   </div>
   <div class="clearfix"></div>
 @else
-  <h5 class="text-danger">Invalid</h5>
+  <h5 class="text-danger">Tidak sah</h5>
 @endif
 </body>
 </html>
