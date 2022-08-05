@@ -23,8 +23,11 @@
         </tr>
       </thead>
       <tbody>
+      @php
+            $no = 1;
+            @endphp
         <tr>
-            <td>{{$order->id}}</td>
+            <td>{{$no++}}</td>
             <td>{{$order->order_number}}</td>
             <td>{{$order->first_name}} {{$order->last_name}}</td>
             <td>{{$order->email}}</td>
@@ -43,11 +46,11 @@
                 @endif
             </td>
             <td>
-                <form method="POST" action="{{route('order.destroy',[$order->id])}}">
+                <!-- <form method="POST" action="{{route('order.destroy',[$order->id])}}">
                   @csrf
                   @method('delete')
                       <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                </form>
+                </form> -->
             </td>
 
         </tr>

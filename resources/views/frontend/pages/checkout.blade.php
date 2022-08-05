@@ -30,7 +30,7 @@
 
                         <div class="col-lg-8 col-12">
                             <div class="checkout-form">
-                                <h2>Lakukan Pembayaran Anda Di Sini</h2>
+                                <h2>Lakukan Pembelian Anda Di Sini</h2>
                                 <p>Silahkan daftar untuk checkout lebih cepat</p>
                                 <!-- Form -->
                                 <div class="row">
@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Alamat 2</label>
+                                            <label>Kabupaten</label>
                                             <input type="text" name="address2" placeholder="" value="{{old('address2')}}">
                                             @error('address2')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -242,7 +242,7 @@
                                 <div class="single-widget get-button">
                                     <div class="content">
                                         <div class="button">
-                                            <button type="submit" class="btn">lanjutkan ke pembayaran</button>
+                                            <button type="submit" class="btn">Checkout</button>
                                         </div>
                                     </div>
                                 </div>

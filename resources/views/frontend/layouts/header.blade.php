@@ -21,7 +21,7 @@
                     <div class="right-content">
                         <ul class="list-main">
                         <!-- <li><i class="ti-location-pin"></i> <a href="{{route('order.track')}}">Track Order</a></li> -->
-                            {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
+                            <!-- {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}} -->
                             @auth
                                 @if(Auth::user()->role=='admin')
                                     <li><i class="ti-user"></i> <a href="{{url('/admin/order')}}"  target="_blank">Dashboard</a></li>
@@ -107,7 +107,7 @@
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
                                         <span>{{count(Helper::getAllProductFromWishlist())}} Items</span>
-                                        <a href="{{route('wishlist')}}">View Wishlist</a>
+                                        <a href="{{route('wishlist')}}">Lihat Wishlist</a>
                                     </div>
                                     <ul class="shopping-list">
                                         {{-- {{Helper::getAllProductFromCart()}} --}}
@@ -128,7 +128,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">Rp. {{number_format(Helper::totalWishlistPrice(),0)}}</span>
                                         </div>
-                                        <a href="{{route('cart')}}" class="btn animate">Cart</a>
+                                        <a href="{{route('cart')}}" class="btn animate">Keranjang</a>
                                     </div>
                                 </div>
                             @endauth
@@ -143,8 +143,8 @@
                             @auth
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
-                                        <span>{{count(Helper::getAllProductFromCart())}} Items</span>
-                                        <a href="{{route('cart')}}">View Cart</a>
+                                        <span>{{count(Helper::getAllProductFromCart())}} Produk</span>
+                                        <a href="{{route('cart')}}">Lihat Keranjang</a>
                                     </div>
                                     <ul class="shopping-list">
                                         {{-- {{Helper::getAllProductFromCart()}} --}}

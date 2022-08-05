@@ -10,7 +10,7 @@
      </div>
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary float-left">Daftar Produk</h6>
-      <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Product</a>
+      <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Tambah Produk</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -57,7 +57,8 @@
                     <td>  {{$product->discount}}% OFF</td>
                     <td>{{$product->size}}</td>
                     <td>{{$product->condition}}</td>
-                    <td> {{ucfirst($product->brand=='title')}}</td>
+                    <td>{{$product->brand->title ?? ''}}
+                    </td>
                     <td>
                       @if($product->stock>0)
                       <span class="badge badge-primary">{{$product->stock}}</span>
@@ -66,12 +67,12 @@
                       @endif
                     </td>
                     <td>
-                        @if($product->photo)
-                            @php
+                    @if($product->photo)
+                        @php
                               $photo=explode(',',$product->photo);
                               // dd($photo);
                             @endphp
-                            <img src="{{url($product->photo)}}" class="img-fluid zoom" style="max-width:80px" alt="{{$product->photo}}">
+                            <img src="{{$product->photo}}" class="img-fluid" style="max-width:80px" alt="{{$product->photo}}">
                         @else
                             <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                         @endif

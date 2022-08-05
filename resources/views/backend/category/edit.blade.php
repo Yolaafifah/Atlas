@@ -24,7 +24,7 @@
           @enderror
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="is_parent">Utama</label><br>
           <input type="checkbox" name='is_parent' id='is_parent' value='{{$category->is_parent}}' {{(($category->is_parent==1)? 'checked' : '')}}> Ya                        
         </div>
@@ -40,17 +40,17 @@
                   <option value='{{$parent_cat->id}}' {{(($parent_cat->id==$category->parent_id) ? 'selected' : '')}}>{{$parent_cat->title}}</option>
               @endforeach
           </select>
-        </div>
+        </div> -->
 
         <div class="form-group">
-          <label for="inputPhoto" class="col-form-label">Gambar</label>
+          <label for="inputPhoto" class="col-form-label">Gambar <span class="text-danger">*</span></label>
           <div class="input-group">
-              <span class="input-group-btn">
-                  <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                  <i class="fa fa-picture-o"></i> Pilih
+              <!-- <span class="input-group-btn">
+                  <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
+                  <i class="fas fa-image"></i> Pilih
                   </a>
-              </span>
-          <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$category->photo}}">
+              </span> -->
+          <input id="" class="form-control" type="file" name="photo" value="{{$category->photo}}">
         </div>
         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
           @error('photo')

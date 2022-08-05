@@ -21,9 +21,10 @@
               <th>No. Pesanan</th>
               <th>Nama</th>
               <th>Email</th>
-              <th>Jumlah</th>
+              <th>Jumlah Produk</th>
               <th>Biaya Ongkos Kirim</th>
               <th>Jumlah Total</th>
+              <th>Tanggal Ubah Status</th>
               <th>Status</th>
               <th>Supir</th>
               <th>Kendaraan</th>
@@ -46,6 +47,7 @@
                     <td>{{$order->quantity}}</td>
                     <td>@foreach($shipping_charge as $data) Rp. {{number_format($data,0)}} @endforeach</td>
                     <td>Rp. {{number_format($order->total_amount,0)}}</td>
+                    <td>{{$order->updated_at}}</td>
                     <td>
                         @if($order->status=='new')
                           <span class="badge badge-primary">{{$order->status}}</span>

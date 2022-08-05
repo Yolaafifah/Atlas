@@ -56,6 +56,7 @@ class CategoryController extends Controller
         }
         $data['slug']=$slug;
         $data['is_parent']=$request->input('is_parent',0);
+        $data['photo'] = "/storage/photos/1/Category/".$request->photo;
         // return $data;   
         $status=Category::create($data);
         if($status){
@@ -113,6 +114,7 @@ class CategoryController extends Controller
             'parent_id'=>'nullable|exists:categories,id',
         ]);
         $data= $request->all();
+        $data['photo'] = "/storage/photos/1/Category/".$request->photo;
         $data['is_parent']=$request->input('is_parent',0);
         // return $data;
         $status=$category->fill($data)->save();

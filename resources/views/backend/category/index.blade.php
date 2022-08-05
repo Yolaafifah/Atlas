@@ -21,8 +21,8 @@
               <th>No.</th>
               <th>Judul</th>
               <th>Slug</th>
-              <th>Utama</th>
-              <th>Kategori Utama</th>
+              <!-- <th>Utama</th>
+              <th>Kategori Utama</th> -->
               <th>Gambar</th>
               <th>Status</th>
               <th>Aksi</th>
@@ -41,12 +41,16 @@
                     <td>{{$no++}}</td>
                     <td>{{$category->title}}</td>
                     <td>{{$category->slug}}</td>
-                    <td>{{(($category->is_parent==1)? 'Yes': 'No')}}</td>
+                    <!-- <td>{{(($category->is_parent==1)? 'Yes': 'No')}}</td>
                     <td>
                         {{$category->parent_info->title ?? ''}}
-                    </td>
+                    </td> -->
                     <td>
                         @if($category->photo)
+                        @php
+                              $photo=explode(',',$category->photo);
+                              // dd($photo);
+                            @endphp
                             <img src="{{$category->photo}}" class="img-fluid" style="max-width:80px" alt="{{$category->photo}}">
                         @else
                             <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">

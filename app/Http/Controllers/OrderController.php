@@ -12,6 +12,8 @@ use Notification;
 use Helper;
 use Illuminate\Support\Str;
 use App\Notifications\StatusNotification;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -22,7 +24,27 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders=Order::orderBy('id','DESC')->paginate(10);
+        if(Auth::user()->role == 'supir'){
+        $orders = Order::leftJoin('users', 'orders.user_id', '=', 'users.id')
+        ->select(
+            'orders.id as id',
+            'orders.order_number as order_number',
+            'orders.first_name as first_name',
+            'orders.email as email',
+            'orders.quantity as quantity',
+            'orders.shipping_id as shipping_id',
+            'orders.total_amount as total_amount',
+            'orders.updated_at as updated_at',
+            'orders.status as status',
+            'orders.sopir_id as sopir_id',
+            'orders.truk as truk'
+            
+        )
+        ->where('orders.sopir_id', Auth::user()->id)->paginate(10);
+        } else {
+        $orders = Order::orderBy('id', 'DESC')->paginate(10);
+        }
+        // $orders=Order::orderBy('id','DESC')->paginate(10);
         $user=User::all();
         return view('backend.order.index',compact('orders','user'));
         
@@ -205,6 +227,23 @@ class OrderController extends Controller
         }
         return redirect()->route('order.index');
         }
+
+        public function update_status(Request $request, $id)
+        {
+            $order=Order::find($id);
+            $mytime = Carbon\Carbon::now(); 
+            $order->confirmation_date = $mytime->toDateTimeString(); 
+            $order->status = $request->status;
+            
+            if($order->save()){
+                request()->session()->flash('success','Successfully updated order');
+            }
+            else{
+                request()->session()->flash('error','Error while updating order');
+            }
+            return redirect()->route('order.index');
+            }
+
 
 
 
