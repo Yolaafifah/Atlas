@@ -114,6 +114,8 @@ Route::group(['prefix' => '/admin'], function () {
     Route::resource('/category', 'CategoryController');
     // Product
     Route::resource('/product', 'ProductController');
+    // Transportation
+    Route::resource('/transportation', TransportationController::class);
     // Ajax for sub category
     Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
     // POST category
@@ -130,7 +132,7 @@ Route::group(['prefix' => '/admin'], function () {
     Route::resource('/order', 'OrderController');
     // Rekap Penjualan
     Route::get('/rekap_penjualan', 'RekapController@index')->name('rekap_penjualan.index');
-    
+
     // Shipping
     Route::resource('/shipping', 'ShippingController');
     // Coupon

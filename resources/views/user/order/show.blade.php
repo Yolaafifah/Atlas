@@ -66,11 +66,19 @@
               <table class="table">
                     <tr class="">
                         <td>Nomor Pesanan</td>
-                        <td> : {{$order->order_number}}</td>
+                        <td> : {{ $order->order_number }}</td>
                     </tr>
                     <tr>
                         <td>Tanggal Pesanan</td>
-                        <td> : {{$order->created_at->format('D d M, Y')}} at {{$order->created_at->format('g : i a')}} </td>
+                        <td> : {{ $order->created_at->format('D d M, Y') }} at {{ $order->created_at->format('g : i a') }} </td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal Pengiriman</td>
+                        <td> : {{ (($order->deliver_date == NULL) ? '-' : $order->deliver_date->format('D d M, Y')) }} {{ (( $order->deliver_date == NULL) ? '' : 'at') }} {{ (($order->deliver_date == NULL) ? '' : $order->deliver_date->format('g : i a') ) }} </td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal Diterima</td>
+                        <td> : {{ (($order->confirm_date == NULL) ? '-' : $order->confirm_date->format('D d M, Y')) }} {{ (( $order->confirm_date == NULL) ? '' : 'at') }} {{ (($order->confirm_date == NULL) ? '' :  $order->confirm_date->format('g : i a')) }} </td>
                     </tr>
                     <tr>
                         <td>Jumlah</td>

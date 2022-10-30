@@ -5,7 +5,19 @@
 @section('main-content')
 <div class="card">
   <h5 class="card-header">Edit Pesanan</h5>
+
+  
+
   <div class="card-body">
+    @isset($errors)
+      
+    @if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+      {{ $errors->first() }}
+    </div>
+    @endif
+    @endisset
+
     <form action="{{route('order.update',$order->id)}}" method="POST">
       @csrf
       @method('PATCH')
@@ -13,15 +25,15 @@
         <label for="status">Status :</label>
         <select name="status" id="" class="form-control">
         @if (Auth::user()->role == 'admin')
-          <option value="new" {{($order->status=='delivered' || $order->status=="process" || $order->status=="cancel") ? 'disabled' : ''}}  {{(($order->status=='new')? 'selected' : '')}}>Baru</option>
-          <option value="process" {{($order->status=='delivered'|| $order->status=="cancel") ? 'disabled' : ''}}  {{(($order->status=='process')? 'selected' : '')}}>Sedang di Proses</option>
+          <option value="new" {{ ($order->status=='delivered' || $order->status=="process" || $order->status=="cancel") ? 'disabled' : '' }}  {{ (($order->status=='new')? 'selected' : '') }}>Baru</option>
+          <option value="process" {{ ($order->status=='delivered'|| $order->status=="cancel") ? 'disabled' : '' }}  {{ (($order->status=='process')? 'selected' : '') }}>Sedang di Proses</option>
         @endif
         @if (Auth::user()->role == 'gudang')
-          <option value="delivered" {{($order->status=="cancel") ? 'disabled' : ''}}  {{(($order->status=='delivered')? 'selected' : '')}}>Sedang Dikirim</option>
+          <option value="delivered" {{ ($order->status=="cancel") ? 'disabled' : '' }}  {{ (($order->status=='delivered')? 'selected' : '') }}>Sedang Dikirim</option>
         @endif
         @if (Auth::user()->role == 'supir')
-          <option value="delivered" {{($order->status=="cancel") ? 'disabled' : ''}}  {{(($order->status=='delivered')? 'selected' : '')}}>Sudah Dikirim</option>
-          <option value="cancel" {{($order->status=='delivered') ? 'disabled' : ''}}  {{(($order->status=='cancel')? 'selected' : '')}}>Sudah Dibatalkan</option>
+          <option value="delivered" {{ ($order->status=="cancel") ? 'disabled' : '' }}  {{ (($order->status=='delivered')? 'selected' : '') }}>Sudah Dikirim</option>
+          <option value="cancel" {{ ($order->status=='delivered') ? 'disabled' : '' }}  {{ (($order->status=='cancel')? 'selected' : '') }}>Sudah Dibatalkan</option>
         @endif
           
           
@@ -37,10 +49,13 @@
 
       </div>
       <div class="form-group">
-        <label for="status">Kendaraan :</label>
+        <label for="status">Kendaraan {{ (($order->truk == NULL) ? '' : "(sebelumnya: $order->truk)")  }}:</label>
         <select name="truk" id="" class="form-control">
-          <option value="pick_up" selected>Pick Up</option>
-          <option value="truk" >Truk</option>
+            @foreach ($montors as $mobil)
+              <option value="{{ $mobil->id }}">[ {{ strtoupper($mobil->type) }} ] [ min: {{ $mobil->min_capacity }} Kg ] [ maks: {{ $mobil->max_capacity }} Kg ] - {{ strtoupper($mobil->police_number) }}, Merek: {{ $mobil->name }}</option>
+            @endforeach
+          {{-- <option value="pick_up" selected>Pick Up</option>
+          <option value="truk" >Truk</option> --}}
           
         </select>
       </div>

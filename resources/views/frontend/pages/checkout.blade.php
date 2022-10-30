@@ -26,6 +26,9 @@
         <div class="container">
                 <form class="form" method="POST" action="{{route('cart.order')}}">
                     @csrf
+
+                    <input type="hidden" name="total_weight" value="{{ $total_weight }}">
+
                     <div class="row"> 
 
                         <div class="col-lg-8 col-12">
@@ -190,7 +193,7 @@
                                                     <select name="shipping" class="nice-select">
                                                         <option value="">Pilih Alamat Anda</option>
                                                         @foreach(Helper::shipping() as $shipping)
-                                                        <option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: Rp. {{$shipping->price}}</option>
+                                                            <option value="{{ $shipping->id }}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: Rp. {{$shipping->price}}</option>
                                                         @endforeach
                                                     </select>
                                                 @else 
@@ -199,7 +202,7 @@
                                             </li>
                                             
                                             @if(session('coupon'))
-                                            <li class="coupon_price" data-price="{{session('coupon')['value']}}">You Save<span>Rp. {{number_format(session('coupon')['value'],0)}}</span></li>
+                                                <li class="coupon_price" data-price="{{session('coupon')['value']}}">You Save<span>Rp. {{number_format(session('coupon')['value'],0)}}</span></li>
                                             @endif
                                             @php
                                                 $total_amount=Helper::totalCartPrice();
@@ -379,7 +382,7 @@
 				let subtotal = parseFloat( $('.order_subtotal').data('price') ); 
 				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0; 
 				// alert(coupon);
-				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
+				$('#order_total_price span').text('Rp. '+(subtotal + cost-coupon).toFixed(2));
 			});
 
 		});

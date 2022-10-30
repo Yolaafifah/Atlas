@@ -25,6 +25,7 @@
               <th>Harga</th>
               <th>Diskon</th>
               <th>Ukuran</th>
+              <th>Ukuran Sebenarnya Dalam Kg</th>
               <th>Kondisi</th>
               <th>Merk</th>
               <th>Stock</th>
@@ -45,25 +46,26 @@
               $brands=DB::table('brands')->select('title')->where('id',$product->brand_id)->get();
               @endphp
                 <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$product->title}}</td>
-                    <td>{{$product->title}}
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $product->title }}</td>
+                    <td>{{ $product->title }}
                       <sub>
-                          {{$product->sub_cat_info->title ?? ''}}
+                          {{ $product->sub_cat_info->title ?? '' }}
                       </sub>
                     </td>
                     <!-- <td>{{(($product->is_featured==1)? 'Yes': 'No')}}</td> -->
-                    <td>Rp. {{$product->price}} /-</td>
-                    <td>  {{$product->discount}}% OFF</td>
-                    <td>{{$product->size}}</td>
-                    <td>{{$product->condition}}</td>
-                    <td>{{$product->brand->title ?? ''}}
+                    <td>Rp. {{ $product->price }} /-</td>
+                    <td>  {{ $product->discount }}% OFF</td>
+                    <td>{{ $product->size }}</td>
+                    <td>{{ $product->actual_size_in_kg }}</td>
+                    <td>{{ $product->condition }}</td>
+                    <td>{{ $product->brand->title ?? '' }}
                     </td>
                     <td>
                       @if($product->stock>0)
-                      <span class="badge badge-primary">{{$product->stock}}</span>
+                      <span class="badge badge-primary">{{ $product->stock}}</span>
                       @else
-                      <span class="badge badge-danger">{{$product->stock}}</span>
+                      <span class="badge badge-danger">{{ $product->stock }}</span>
                       @endif
                     </td>
                     <td>
@@ -72,9 +74,9 @@
                               $photo=explode(',',$product->photo);
                               // dd($photo);
                             @endphp
-                            <img src="{{$product->photo}}" class="img-fluid" style="max-width:80px" alt="{{$product->photo}}">
+                            <img src="{{ $product->photo }}" class="img-fluid" style="max-width:80px" alt="{{ $product->photo }}">
                         @else
-                            <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
+                            <img src="{{ asset('backend/img/thumbnail-default.jpg') }}" class="img-fluid" style="max-width:80px" alt="avatar.png">
                         @endif
                     </td>
                     <td>

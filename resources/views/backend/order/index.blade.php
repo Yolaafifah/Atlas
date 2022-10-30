@@ -20,14 +20,17 @@
               <th>No.</th>
               <th>No. Pesanan</th>
               <th>Nama</th>
-              <th>Email</th>
+              <th>No. Handphone</th>
               <th>Jumlah Produk</th>
+              <th>Berat Total</th>
               <th>Biaya Ongkos Kirim</th>
-              <th>Jumlah Total</th>
-              <th>Tanggal Ubah Status</th>
+              <th>Jumlah Total Pembayaran</th>
               <th>Status</th>
               <th>Supir</th>
               <th>Kendaraan</th>
+              <th>Waktu Pemesanan</th>
+              <th>Waktu Pengiriman</th>
+              <th>Waktu Pesanan Selesai</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -40,45 +43,65 @@
                 $shipping_charge=DB::table('shippings')->where('id',$order->shipping_id)->pluck('price');
             @endphp 
                 <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$order->order_number}}</td>
-                    <td>{{$order->first_name}} {{$order->last_name}}</td>
-                    <td>{{$order->email}}</td>
-                    <td>{{$order->quantity}}</td>
-                    <td>@foreach($shipping_charge as $data) Rp. {{number_format($data,0)}} @endforeach</td>
-                    <td>Rp. {{number_format($order->total_amount,0)}}</td>
-                    <td>{{$order->updated_at}}</td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $order->order_number }}</td>
+                    <td>{{ $order->first_name }} {{ $order->last_name }}</td>
+                    <td>{{ $order->phone }}</td>
+                    <td>{{ $order->quantity }}</td>
+                    <td>{{ (($order->total_weight == NULL) ? '0' : $order->total_weight) }} Kg</td>
+                    <td>@foreach($shipping_charge as $data) Rp. {{ number_format($data,0) }} @endforeach</td>
+                    <td>Rp. {{ number_format($order->total_amount,0) }}</td>
+                    {{-- <td>{{ $order->updated_at }}</td> --}}
                     <td>
                         @if($order->status=='new')
-                          <span class="badge badge-primary">{{$order->status}}</span>
+                          <span class="badge badge-primary">{{ $order->status }}</span>
                         @elseif($order->status=='process')
-                          <span class="badge badge-warning">{{$order->status}}</span>
+                          <span class="badge badge-warning">{{ $order->status }}</span>
                         @elseif($order->status=='delivered')
-                          <span class="badge badge-success">{{$order->status}}</span>
+                          <span class="badge badge-success">{{ $order->status }}</span>
                         @else
-                          <span class="badge badge-danger">{{$order->status}}</span>
+                          <span class="badge badge-danger">{{ $order->status }}</span>
                         @endif
                     </td>
                     <td>
-                    @if($order->sopir_id != null)  
-                    @foreach($user as $u)
-                      @if($u->id == $order->sopir_id)
-                        {{$u->name}}
+                      @if($order->sopir_id != null)  
+                        @foreach($user as $u)
+                          @if($u->id == $order->sopir_id)
+                            {{ $u->name }}
+                          @endif
+                        @endforeach
+                      @else
+                        Sopir masih kosong
                       @endif
-                    @endforeach
-                    @else
-                    Sopir masih kosong
-                    @endif
                     </td>
                     <td>
-                    @if($order->truk != null)
-                    {{$order->truk}}
-                    @endif
+                      <!-- @if($order->sopir_id != null)  
+                        @foreach($user as $u)
+                          @if($u->id == $order->sopir_id)
+                            {{ $u->name }}
+                          @endif
+                        @endforeach -->
+                          @if($order->truk != null)
+                            [ {{ strtoupper($order->transportation->type) }} - {{ strtoupper($order->transportation->police_number) }} - {{ $order->transportation->name }} ]
+                          @endif
+                      <!-- @else
+                        Sopir masih kosong
+                      @endif -->
+                      
                     </td>
                     <td>
-                        <a href="{{route('order.show',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
-                        <a href="{{route('order.edit',$order->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form method="POST" action="{{route('order.destroy',[$order->id])}}">
+                      {{ $order->created_at }}
+                    </td>
+                    <td>
+                      {{ (($order->deliver_date == NULL) ? '-' : $order->deliver_date) }}
+                    </td>
+                    <td>
+                      {{ (($order->confirm_date == NULL) ? '-' : $order->confirm_date) }}
+                    </td>
+                    <td>
+                        <a href="{{ route('order.show',$order->id) }}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                        <a href="{{ route('order.edit',$order->id) }}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="{{ route('order.destroy',[$order->id]) }}">
                           @csrf 
                           @method('delete')
                               <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
@@ -88,7 +111,7 @@
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$orders->links()}}</span>
+        <span style="float:right">{{ $orders->links() }}</span>
         @else
           <h6 class="text-center">Tidak ada pesanan yang ditemukan!!! Silahkan pesan beberapa produk</h6>
         @endif

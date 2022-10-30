@@ -74,6 +74,7 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
+
         <div class="form-group">
           <label for="size">Ukuran</label>
           <select name="size[]" class="form-control selectpicker"  multiple data-live-search="true">
@@ -82,6 +83,14 @@
               <option value="M">20 Kg (M)</option>
               
           </select>
+        </div>
+
+        <div class="form-group">
+          <label for="actual_size_in_kg" class="col-form-label">Ukuran Sebenarnya dalam Kg <span class="text-danger">*</span></label>
+          <input id="actual_size_in_kg" type="number" name="actual_size_in_kg" placeholder="Enter actual size in kg"  value="{{old('actual_size_in_kg')}}" class="form-control">
+          @error('actual_size_in_kg')
+          <span class="text-danger">{{ $message }}</span>
+          @enderror
         </div>
 
         <div class="form-group">

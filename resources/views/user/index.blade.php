@@ -103,6 +103,7 @@
               <th>Jumlah</th>
               <th>Jumlah Total</th>
               <th>Status</th>
+              <th>Waktu Pemesanan</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -111,29 +112,31 @@
             @if(count($orders)>0)
               @foreach($orders as $order)   
                 <tr>
-                    <td>{{$order->id}}</td>
-                    <td>{{$order->order_number}}</td>
-                    <td>{{$order->first_name}} {{$order->last_name}}</td>
-                    <td>{{$order->email}}</td>
-                    <td>{{$order->quantity}}</td>
-                    <td>Rp. {{number_format($order->total_amount,0)}}</td>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->order_number }}</td>
+                    <td>{{ $order->first_name }} {{ $order->last_name }}</td>
+                    <td>{{ $order->email }}</td>
+                    <td>{{ $order->quantity }}</td>
+                    <td>Rp. {{ number_format($order->total_amount,0) }}</td>
                     <td>
                         @if($order->status=='new')
-                          <span class="badge badge-primary">{{$order->status}}</span>
+                          <span class="badge badge-primary">{{ $order->status }}</span>
                         @elseif($order->status=='process')
-                          <span class="badge badge-warning">{{$order->status}}</span>
+                          <span class="badge badge-warning">{{ $order->status }}</span>
                         @elseif($order->status=='delivered')
-                          <span class="badge badge-success">{{$order->status}}</span>
+                          {{-- udah dikirim tapi nunggu konfirmasi --}}
+                          <span class="badge badge-info">{{ 'menunggu konfirmasi' }}</span>
                         @else
-                          <span class="badge badge-danger">{{$order->status}}</span>
+                          <span class="badge badge-danger">{{ $order->status }}</span>
                         @endif
                     </td>
+                    <td>{{ $order->created_at }}</td>
                     <td>
-                        <a href="{{route('user.order.show',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
-                        <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
+                        <a href="{{ route('user.order.show',$order->id) }}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                        <form method="POST" action="{{ route('user.order.delete',[$order->id]) }}">
                           @csrf 
                           @method('delete')
-                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                              <button class="btn btn-danger btn-sm dltBtn" data-id={{ $order->id }} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>  
@@ -144,7 +147,7 @@
           </tbody>
         </table>
 
-        {{$orders->links()}}
+        {{ $orders->links() }}
       </div>
     </div>
 

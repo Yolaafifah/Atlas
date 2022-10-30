@@ -70,11 +70,43 @@
                     </tr>
                     <tr>
                         <td>Tanggal Pesanan</td>
-                        <td> : {{$order->created_at->format('D d M, Y')}} at {{$order->created_at->format('g : i a')}} </td>
+                        <td> : {{ (($order->created_at == NULL) ? '-' : $order->created_at->format('D d M, Y')) }} {{ (($order->created_at == NULL) ? '' : 'at') }} {{  (($order->created_at == NULL) ? '' : $order->created_at->format('g : i a'))  }} </td>
+                    </tr>
+                    <tr>
+                      <td>Tanggal Pengiriman</td>
+                      <td> : {{ (($order->deliver_date == NULL) ? '-' : $order->deliver_date) }} {{ (( $order->deliver_date == NULL) ? '' : 'at') }} {{ (($order->deliver_date == NULL) ? '' : $order->deliver_date ) }} </td>
+                    </tr>
+                  
+                    @if (Auth::user()->role == 'admin')
+                    <tr>
+                      <td>Tanggal Diterima</td>
+                      <td> : {{ (($order->confirm_date == NULL) ? '-' : $order->confirm_date) }} {{ (( $order->confirm_date == NULL) ? '' : 'at') }} {{ (($order->confirm_date == NULL) ? '' :  $order->confirm_date) }} </td>
+                    </tr>
+                    @endif
+                    <tr>
+                      <td>Tanggal Diterima</td>
+                      <td> : 
+                        @if($order->sopir_id != null)  
+                        @foreach($user as $u)
+                          @if($u->id == $order->sopir_id)
+                            {{ $u->name }}
+                          @endif
+                        @endforeach
+                          @if($order->truk != null)
+                            [ {{ strtoupper($order->transportation->type) }} - {{ strtoupper($order->transportation->police_number) }} - {{ $order->transportation->name }} ]
+                          @endif
+                      @else
+                        -
+                      @endif
+                      </td>
                     </tr>
                     <tr>
                         <td>Jumlah</td>
                         <td> : {{$order->quantity}}</td>
+                    </tr>
+                    <tr>
+                        <td>Berat Total</td>
+                        <td> : {{$order->total_weight}} Kg</td>
                     </tr>
                     <tr>
                         <td>Status Pesanan</td>
